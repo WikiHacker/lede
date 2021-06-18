@@ -60,8 +60,6 @@ jobs:
        mkdir openwrt-packages
        cd openwrt-packages
        git clone https://github.com/longcat99/long.git
-       rm -Rf OpenAppFilter
-       git clone https://github.com/destan19/OpenAppFilter.git
        git clone https://github.com/xiaorouji/openwrt-passwall.git
        # git clone https://github.com/longcat99/helloworld.git
        git clone https://github.com/fw876/helloworld.git
