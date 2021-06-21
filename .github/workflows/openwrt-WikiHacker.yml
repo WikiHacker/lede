@@ -446,7 +446,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-ntpc=y
           CONFIG_PACKAGE_luci-app-netspeedtest=y
           CONFIG_PACKAGE_speedtest=y
-          CONFIG_PACKAGE_luci-app-oaf=y
+          CONFIG_PACKAGE_luci-app-oaf=n
           CONFIG_PACKAGE_luci-app-ocserv=y
           CONFIG_PACKAGE_luci-app-omcproxy=y
           CONFIG_PACKAGE_luci-app-openclash=y
