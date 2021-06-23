@@ -267,6 +267,9 @@ jobs:
           CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
           CONFIG_PACKAGE_kmod-via-rhine=y
           CONFIG_PACKAGE_kmod-via-velocity=y
+          CONFIG_PACKAGE_kmod-sched-connmark=y
+          CONFIG_PACKAGE_kmod-sched=y
+          CONFIG_PACKAGE_kmod-ipt-hashlimit=y
           EOF
 
           # WiFi网卡驱动:
@@ -394,7 +397,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=y
           CONFIG_PACKAGE_luci-app-dnsfilter=y
           CONFIG_PACKAGE_luci-app-dnsforwarder=y
-          CONFIG_PACKAGE_luci-app-docker=y
+          # CONFIG_PACKAGE_luci-app-docker=y
           CONFIG_PACKAGE_luci-app-dockerman=y
           CONFIG_PACKAGE_luci-app-eqos=y
           CONFIG_PACKAGE_luci-app-familycloud=y
@@ -436,7 +439,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-ntpc=y
           CONFIG_PACKAGE_luci-app-netspeedtest=y
           CONFIG_PACKAGE_speedtest=y
-          CONFIG_PACKAGE_luci-app-oaf=n
+          # CONFIG_PACKAGE_luci-app-oaf=y
           CONFIG_PACKAGE_luci-app-ocserv=y
           CONFIG_PACKAGE_luci-app-omcproxy=y
           CONFIG_PACKAGE_luci-app-openclash=y
