@@ -98,17 +98,7 @@ jobs:
        svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-pppoe-server
        git clone https://github.com/BoringCat/luci-app-mentohust.git
        
-    - name: Remove OpenAppFilter
-      run: |
-       cd package
-       rm -Rf lean/OpenAppFilter
-       ls
-       cd openwrt-packages
-       rm -Rf OpenAppFilter
-       ls
-       git clone https://github.com/destan19/OpenAppFilter.git
-       ls
-       
+
     - name: Download plug in
       run: ./scripts/feeds update -a
 
