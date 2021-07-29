@@ -75,10 +75,12 @@ jobs:
        git clone https://github.com/garypang13/luci-app-dnsfilter.git
        git clone https://github.com/garypang13/luci-app-bypass.git
        # git clone https://github.com/longcat99/luci-app-bypass.git
-       git clone --depth 1 https://github.com/garypang13/smartdns-le
+       ##git clone --depth 1 https://github.com/garypang13/smartdns-le
        # git clone --depth 1 https://github.com/longcat99/smartdns-le
        # git clone --depth 1 https://github.com/pymumu/smartdns
-       git clone --depth 1 https://github.com/pymumu/luci-app-smartdns
+       ##git clone --depth 1 https://github.com/pymumu/luci-app-smartdns
+       svn co https://github.com/OpenWrt-Actions/OpenWrt-Packages/trunk/smartdns
+       svn co https://github.com/OpenWrt-Actions/OpenWrt-Packages/trunk/luci-app-smartdns
        # git clone https://github.com/longcat99/luci-app-bypass.git
        git clone https://github.com/kuoruan/luci-app-kcptun.git
        git clone https://github.com/project-lede/luci-app-godproxy.git
