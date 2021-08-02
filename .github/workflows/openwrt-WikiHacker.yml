@@ -79,8 +79,10 @@ jobs:
        # git clone --depth 1 https://github.com/longcat99/smartdns-le
        # git clone --depth 1 https://github.com/pymumu/smartdns
        ##git clone --depth 1 https://github.com/pymumu/luci-app-smartdns
-       svn co https://github.com/OpenWrt-Actions/OpenWrt-Packages/trunk/smartdns
-       svn co https://github.com/OpenWrt-Actions/OpenWrt-Packages/trunk/luci-app-smartdns
+       ##svn co https://github.com/OpenWrt-Actions/OpenWrt-Packages/trunk/smartdns
+       ##svn co https://github.com/OpenWrt-Actions/OpenWrt-Packages/trunk/luci-app-smartdns
+       svn co https://github.com/WikiHacker/openwrt-packages/trunk/smartdns
+       svn co https://github.com/WikiHacker/openwrt-packages/trunk/luci-app-smartdns
        # git clone https://github.com/longcat99/luci-app-bypass.git
        git clone https://github.com/kuoruan/luci-app-kcptun.git
        git clone https://github.com/project-lede/luci-app-godproxy.git
