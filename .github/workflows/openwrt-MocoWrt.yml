@@ -448,9 +448,9 @@ jobs:
           CONFIG_PACKAGE_luci-app-openclash=y
           CONFIG_PACKAGE_luci-app-openvpn-server=y
           CONFIG_PACKAGE_luci-app-openvpn=y
-          CONFIG_PACKAGE_luci-app-oscam=y
-          CONFIG_PACKAGE_oscam=y
-          CONFIG_PACKAGE_tvheadend=y
+          #CONFIG_PACKAGE_luci-app-oscam=y
+          #CONFIG_PACKAGE_oscam=y
+          #CONFIG_PACKAGE_tvheadend=y
           CONFIG_PACKAGE_luci-app-p910nd=y
           CONFIG_PACKAGE_luci-app-passwall=y
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks=y
