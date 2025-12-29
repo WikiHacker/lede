@@ -7,16 +7,22 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ca-certificates
-PKG_VERSION:=20210119
+PKG_VERSION:=20250419
 PKG_RELEASE:=1
 PKG_MAINTAINER:=
 
+PKG_LICENSE:=GPL-2.0-or-later MPL-2.0
+PKG_LICENSE_FILES:=debian/copyright
+
 PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=@DEBIAN/pool/main/c/ca-certificates
-PKG_HASH:=daa3afae563711c30a0586ddae4336e8e3974c2b627faaca404c4e0141b64665
+PKG_HASH:=33b44ef78653ecd3f0f2f13e5bba6be466be2e7da72182f737912b81798ba5d2
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
+
+TAR_OPTIONS+= --strip-components 1
+TAR_CMD=$(HOST_TAR) -C $(1) $(TAR_OPTIONS)
 
 define Package/ca-certificates
   SECTION:=base
@@ -33,13 +39,6 @@ define Package/ca-bundle
   PKGARCH:=all
   PROVIDES:=ca-certs
 endef
-
-define Build/Prepare
-	$(DECOMPRESS_CMD) $(HOST_TAR) -C $(PKG_BUILD_DIR) $(TAR_OPTIONS)
-	$(Build/Patch)
-endef
-
-MAKE_PATH := work
 
 define Build/Install
 	mkdir -p \

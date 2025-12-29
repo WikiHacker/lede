@@ -109,9 +109,10 @@ define KernelPackage/lib-lzo
   HIDDEN:=1
   FILES:= \
 	$(LINUX_DIR)/crypto/lzo.ko \
+	$(LINUX_DIR)/crypto/lzo-rle.ko \
 	$(LINUX_DIR)/lib/lzo/lzo_compress.ko \
 	$(LINUX_DIR)/lib/lzo/lzo_decompress.ko
-  AUTOLOAD:=$(call AutoProbe,lzo lzo_compress lzo_decompress)
+  AUTOLOAD:=$(call AutoProbe,lzo lzo-rle lzo_compress lzo_decompress)
 endef
 
 define KernelPackage/lib-lzo/description
@@ -133,6 +134,7 @@ define KernelPackage/lib-zstd
   FILES:= \
 	$(LINUX_DIR)/crypto/zstd.ko \
 	$(LINUX_DIR)/lib/xxhash.ko \
+	$(LINUX_DIR)/lib/zstd/zstd_common.ko@ge6.1 \
 	$(LINUX_DIR)/lib/zstd/zstd_compress.ko \
 	$(LINUX_DIR)/lib/zstd/zstd_decompress.ko
   AUTOLOAD:=$(call AutoProbe,xxhash zstd zstd_compress zstd_decompress)
@@ -145,19 +147,28 @@ endef
 $(eval $(call KernelPackage,lib-zstd))
 
 
+define KernelPackage/lib-lz4-decompress
+  SUBMENU:=$(LIB_MENU)
+  TITLE:=LZ4 decompress
+  HIDDEN:=1
+  KCONFIG:=CONFIG_LZ4_DECOMPRESS
+  FILES:=$(LINUX_DIR)/lib/lz4/lz4_decompress.ko
+endef
+
+$(eval $(call KernelPackage,lib-lz4-decompress))
+
+
 define KernelPackage/lib-lz4
   SUBMENU:=$(LIB_MENU)
   TITLE:=LZ4 support
-  DEPENDS:=+kmod-crypto-acompress
+  DEPENDS:=+kmod-crypto-acompress +kmod-lib-lz4-decompress
   KCONFIG:= \
 	CONFIG_CRYPTO_LZ4 \
-	CONFIG_LZ4_COMPRESS \
-	CONFIG_LZ4_DECOMPRESS
+	CONFIG_LZ4_COMPRESS
   FILES:= \
 	$(LINUX_DIR)/crypto/lz4.ko \
-	$(LINUX_DIR)/lib/lz4/lz4_compress.ko \
-	$(LINUX_DIR)/lib/lz4/lz4_decompress.ko
-  AUTOLOAD:=$(call AutoProbe,lz4 lz4_compress lz4_decompress)
+	$(LINUX_DIR)/lib/lz4/lz4_compress.ko
+  AUTOLOAD:=$(call AutoProbe,lz4 lz4_compress)
 endef
 
 define KernelPackage/lib-lz4/description
@@ -165,6 +176,48 @@ define KernelPackage/lib-lz4/description
 endef
 
 $(eval $(call KernelPackage,lib-lz4))
+
+
+define KernelPackage/lib-lz4hc
+  SUBMENU:=$(LIB_MENU)
+  TITLE:=LZ4HC support
+  DEPENDS:=+kmod-crypto-acompress +kmod-lib-lz4-decompress
+  KCONFIG:= \
+	CONFIG_CRYPTO_LZ4HC \
+	CONFIG_LZ4HC_COMPRESS
+  FILES:= \
+	$(LINUX_DIR)/crypto/lz4hc.ko \
+	$(LINUX_DIR)/lib/lz4/lz4hc_compress.ko
+  AUTOLOAD:=$(call AutoProbe,lz4hc lz4hc_compress)
+endef
+
+define KernelPackage/lib-lz4hc/description
+ Kernel module for LZ4HC compression/decompression support
+endef
+
+$(eval $(call KernelPackage,lib-lz4hc))
+
+
+define KernelPackage/lib-842
+  SUBMENU:=$(LIB_MENU)
+  TITLE:=842 support
+  DEPENDS:=+kmod-crypto-acompress +kmod-crypto-crc32
+  KCONFIG:= \
+	CONFIG_CRYPTO_842 \
+	CONFIG_842_COMPRESS \
+	CONFIG_842_DECOMPRESS
+  FILES:= \
+	$(LINUX_DIR)/crypto/842.ko \
+	$(LINUX_DIR)/lib/842/842_compress.ko \
+	$(LINUX_DIR)/lib/842/842_decompress.ko
+  AUTOLOAD:=$(call AutoProbe,842 842_compress 842_decompress)
+endef
+
+define KernelPackage/lib-842/description
+ Kernel module for 842 compression/decompression support
+endef
+
+$(eval $(call KernelPackage,lib-842))
 
 
 define KernelPackage/lib-raid6
@@ -273,7 +326,6 @@ endef
 
 $(eval $(call KernelPackage,asn1-decoder))
 
-
 define KernelPackage/asn1-encoder
   SUBMENU:=$(LIB_MENU)
   TITLE:=Simple ASN1 encoder
@@ -284,7 +336,6 @@ endef
 
 $(eval $(call KernelPackage,asn1-encoder))
 
-
 define KernelPackage/oid-registry
   SUBMENU:=$(LIB_MENU)
   TITLE:=Object identifier registry
@@ -294,3 +345,29 @@ define KernelPackage/oid-registry
 endef
 
 $(eval $(call KernelPackage,oid-registry))
+
+
+define KernelPackage/lib-objagg
+  SUBMENU:=$(LIB_MENU)
+  TITLE:=objagg support
+  FILES:=$(LINUX_DIR)/lib/objagg.ko
+  KCONFIG:= \
+  CONFIG_OBJAGG \
+  CONFIG_TEST_OBJAGG=n
+  AUTOLOAD:=$(call AutoProbe,objagg)
+endef
+
+$(eval $(call KernelPackage,lib-objagg))
+
+
+define KernelPackage/lib-parman
+  SUBMENU:=$(LIB_MENU)
+  TITLE:=parman support
+  FILES:=$(LINUX_DIR)/lib/parman.ko
+  KCONFIG:= \
+  CONFIG_PARMAN \
+  CONFIG_TEST_PARMAN=n
+  AUTOLOAD:=$(call AutoProbe,parman)
+endef
+
+$(eval $(call KernelPackage,lib-parman))
